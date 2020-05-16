@@ -65,6 +65,7 @@ int main (){
 			}
 			
 			ImprimirMatriz(matriz,filas,columnas);
+			cout<<endl;
 			
 			conway(matriz,filas,columnas,turnos);
 			
@@ -95,6 +96,7 @@ int main (){
 			}
 			
 			ImprimirMatriz(matriz,filas,columnas);
+			cout<<endl;
 			
 			conway(matriz,filas,columnas,turnos);
 			
