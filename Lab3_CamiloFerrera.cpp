@@ -56,7 +56,7 @@ int main (){
 			for (int i = 1; i < filas-1; i++){
 				for (int j = 1; j < columnas-1; j++){
 					int random = rand() % 100;
-					if (random > 20){
+					if (random > 40){
 						matriz[i][j] = 1; 
 					} else {
 						matriz[i][j] = 0;
