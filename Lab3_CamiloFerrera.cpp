@@ -111,7 +111,7 @@ int main (){
 }
 
 void conway (int**& matriz,int filas, int columnas, int turnos){
-	int cont = 0;
+	int cont = 1;
 	char avance;		
 	
 	int matrizflag [filas][columnas];
