@@ -1,5 +1,7 @@
 #include <iostream>
+#include <stdio.h>
 #include <time.h>
+#include <conio.h>
 #include <cstdlib>
 
 using namespace std;
@@ -68,6 +70,34 @@ int main (){
 			
 			
 		} else if (opcion == 2){
+			int turnos = 0;			
+			cout << "Ingrese cantidad de turnos: "; cin >> turnos; cout << endl;
+			int filas = 22; int columnas = 22;
+			int temp_mat [20][20] = {{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0},{0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0},{0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0},{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{0,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,0,0},{0,0,1,0,0,0,0,0,0,1,1,1,0,0,0,0,1,0,1,0},{0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0},{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}};
+			
+			int** matriz;
+			matriz = new int *[filas];
+			for (int i = 0; i < filas; i++){
+				matriz[i]= new int[columnas];
+				for (int j = 0; j < columnas; j++){
+					matriz[i][j] = 3;
+				}
+			}
+			
+			int contf = 0,contc = 0;
+			for (int i = 1; i < filas-1; i++){
+				for (int j = 1; j < columnas-1; j++){
+					matriz[i][j] = temp_mat[contf][contc];
+					contc++;
+				}
+				contc = 0;
+				contf++;
+			}
+			
+			ImprimirMatriz(matriz,filas,columnas);
+			
+			conway(matriz,filas,columnas,turnos);
+			
 			
 		} else if (opcion == 3){
 			break;
@@ -92,60 +122,66 @@ void conway (int**& matriz,int filas, int columnas, int turnos){
 	}
 	int contvivas = 0;
 	while (cont < turnos){
-		
-		for (int i = 0; i < filas; i++){
-			for (int j = 0; j < columnas; j++){
-				contvivas = 0;
-				if (matriz[i][j] == 1 || matriz[i][j] == 0){
-					if (matriz[i][j+1] == 1){
-					contvivas++;
-					}
-					if (matriz[i][j-1] == 1){
+		if (getch()){
+			for (int i = 0; i < filas; i++){
+				for (int j = 0; j < columnas; j++){
+					contvivas = 0;
+					if (matriz[i][j] == 1 || matriz[i][j] == 0){
+						if (matriz[i][j+1] == 1){
 						contvivas++;
-					}
-					if (matriz[i-1][j] == 1){
-						contvivas++;
-					}
-					if (matriz[i-1][j+1] == 1){
-						contvivas++;
-					}
-					if (matriz[i-1][j-1] == 1){
-						contvivas++;
-					}
-					if (matriz[i+1][j] == 1){
-						contvivas++;
-					}
-					if (matriz[i+1][j+1] == 1){
-						contvivas++;
-					}
-					if (matriz[i+1][j-1] == 1){
-						contvivas++;
-					}
-					
-					if (matriz[i][j] == 1){
-						if (contvivas == 2 || contvivas == 3){
-							matrizflag[i][j] = 1;
-						} else {
-							matrizflag[i][j] = 0;
-						}					
-					} else if (matriz[i][j] == 0) {
-						if (contvivas == 3){
-							matrizflag[i][j] = 1;
+						}
+						if (matriz[i][j-1] == 1){
+							contvivas++;
+						}
+						if (matriz[i-1][j] == 1){
+							contvivas++;
+						}
+						if (matriz[i-1][j+1] == 1){
+							contvivas++;
+						}
+						if (matriz[i-1][j-1] == 1){
+							contvivas++;
+						}
+						if (matriz[i+1][j] == 1){
+							contvivas++;
+						}
+						if (matriz[i+1][j+1] == 1){
+							contvivas++;
+						}
+						if (matriz[i+1][j-1] == 1){
+							contvivas++;
+						}
+						
+						if (matriz[i][j] == 1){
+							if (contvivas == 2 || contvivas == 3){
+								matrizflag[i][j] = 1;
+							} else {
+								matrizflag[i][j] = 0;
+							}					
+						} else if (matriz[i][j] == 0) {
+							if (contvivas == 3){
+								matrizflag[i][j] = 1;
+							}
 						}
 					}
+										
 				}
-									
+			}		
+			
+			for (int i = 0; i < filas ; i++){
+				for (int j = 0; j < columnas ; j++){
+					matriz[i][j] = matrizflag[i][j];
+				}
 			}
-		}		
-		
-		for (int i = 0; i < filas ; i++){
-			for (int j = 0; j < columnas ; j++){
-				matriz[i][j] = matrizflag[i][j];
-			}
+			ImprimirMatriz(matriz,filas,columnas);
+			cout << endl;
+			
+			cont++;			
 		}
-		ImprimirMatriz(matriz,filas,columnas);
-		cout << endl;
 		
-		cont++;
+	}
+	
+	for (int i = 0; i < filas; i++){
+		
 	}
 }
